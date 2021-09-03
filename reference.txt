@@ -14,3 +14,6 @@ docker exec opros_web_1 python manage.py startapp app
 {% comment %} https://github.com/kartheekgottipati/Docker-compose-django-rest-deploy {% endcomment %}
 how to install requirements (includint restframework)
 docker exec opros_web_1 pip install -r requirements.txt
+-----
+this like will allowe create super user, and make it easier
+docker exec -it <container_name> sh
