@@ -4,8 +4,24 @@
 
 {% block body %}
 
-лист опросов
+лист опросов <br>
+
+    {% for opros in all_opros %}
+    
+
+    
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Номер опроса: {{opros.id}}</h5>
+                    <p class="card-text">{{opros}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
 
 
+    {% endfor %}
 
-{% endblock %}
+
+    {% endblock %}

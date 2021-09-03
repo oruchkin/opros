@@ -29,7 +29,6 @@ def new_opros(request):
             title = form_new_opros.cleaned_data['title']
             new_opros = Opros(title=title, creator=user)
             new_opros.save()
-
         return HttpResponseRedirect(reverse("index"))
     
     else:
@@ -37,8 +36,6 @@ def new_opros(request):
         return render(request, "app/new_opros.html", {
             "blank_form_new_opros": blank_form_new_opros,
         })
-
-
 
 
 # IP каждго юзера. This is "id" of any unauthorized user.
