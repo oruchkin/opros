@@ -1,0 +1,16 @@
+" docker-compose run web django-admin startproject opros . "
+
+docker-compose up      >>> to start docker
+docker-compose down    >>> to stop docker
+
+docker ps              >>> shows all images which are runing with docker
+
+---------
+how to execute commands:
+          (this is name)=opros_web_1
+docker exec opros_web_1 python manage.py startapp app
+
+---------
+{% comment %} https://github.com/kartheekgottipati/Docker-compose-django-rest-deploy {% endcomment %}
+how to install requirements (includint restframework)
+docker exec opros_web_1 pip install -r requirements.txt
