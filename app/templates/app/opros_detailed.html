@@ -1,0 +1,23 @@
+{% extends "app/layout.html" %}
+
+{% block title %}opros detailed{% endblock %}
+
+{% block body %}
+    
+    Детальный обзор опроса:
+    id = {{current_opros.id}}<br>
+    название опроса = {{current_opros.title}}<br><br>
+    
+    <div class="questions_tekst">
+        <p>Вывод всех вопросов с текстом к текущему опросу:</p>
+        {% for vopros in questions_tekst  %}
+        {{vopros}}<br>
+        <br>
+        {% endfor %}
+    </div>
+    
+
+
+    
+
+{% endblock %}
