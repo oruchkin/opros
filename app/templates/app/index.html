@@ -49,18 +49,24 @@
             <thead>
                 <tr>
                     <th scope="col">id</th>
-                    <th scope="col">question_text</th>
-                    <th scope="col">question_answer</th>
-                    <th scope="col">opros_id</th>
+                    <th scope="col">title</th>
+                    <th scope="col">opisanie</th>
+                    <th scope="col">date_of_start</th>
+                    <th scope="col">date_of_end</th>
+                    <th scope="col">blocked</th>
+                    <th scope="col">creator</th>
 
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>уникальный id вопроса</td>
-                    <td>Сам вопрос сюда</td>
-                    <td>поле не заполнять, игнорировать (не обязательно, (удалить))</td>
-                    <td>id опроса к которму прилинкован текущий вопрос</td>
+                    <td>уникальный id опроса</td>
+                    <td>Заголовок опроса</td>
+                    <td>описание опроса</td>
+                    <td>Дата начала опроса (необязательно к заполнению (по умолчанию Null))</td>
+                    <td>Дата конца опроса (необязательно к заполнению(по умолчанию Null))</td>
+                    <td>"True" or "False" только два значения, по умолчанию ставиться "False", если в опросе имеется заполненое date_of_start (!= Null не равное Null) , то необходимо сменить поле "blocked=True" и заблокировать возможность изменения полей</td>
+                    <td>Создатель опроса, сюда указать id user'a (по умолчанию "id=1" это id admin'a) </td>
                 </tr>
             </tbody>
         </table>
@@ -93,7 +99,32 @@
 
     </div>
 
+    {% comment %} получения списка всех вопросов с текстовым ответом {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >4) Получить Конкретный ВОПРОС c текстовым ответом в деталях  <a href="http://127.0.0.1:8000/detailed_opros/1/">http://127.0.0.1:8000/detailed_opros/id(pk)/</a> </p> 
+        <p>вместо id(pk) указать id конкретного опроса (например "1", "33","69)</p>
+        <p> Методы обращений: <b> GET, POST, CREATE, DELETE </b></p> 
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">question_text</th>
+                    <th scope="col">question_answer</th>
+                    <th scope="col">opros_id</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id вопроса</td>
+                    <td>Сам вопрос сюда</td>
+                    <td>поле не заполнять, игнорировать (не обязательно, (удалить))</td>
+                    <td>id опроса к которму прилинкован текущий вопрос</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
     
     
 

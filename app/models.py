@@ -32,6 +32,8 @@ class Question_tekst(models.Model):
     # и поле множестенный ответ или нет
 
 
+
+
 class Question_1variant(models.Model):
     opros_id = models.ForeignKey(Opros, on_delete=models.DO_NOTHING, related_name="question_1variant")
 
@@ -41,6 +43,7 @@ class Question_1variant(models.Model):
     answer_2 = models.CharField(max_length=1000, blank=True, null=True)
     answer_3 = models.CharField(max_length=1000, blank=True, null=True)
     answer_4 = models.CharField(max_length=1000, blank=True, null=True)
+    
     #add bool который будет чекать это еденичный вопрос или множественный, если множественный то одна лгика
     # если еденичный то другая
 

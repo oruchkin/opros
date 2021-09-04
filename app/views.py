@@ -166,10 +166,7 @@ class List_Opros_api(mixins.ListModelMixin, generics.GenericAPIView):
         return self.list(request, *args, **kwargs)
     
     
-# Детали опросов опросов - GET - PUT - CREATE - DELETE
-# class Detailed_Opros_api(mixins.ListModelMixin, generics.GenericAPIView):
-
-
+# Детальные опросы (по штучно) - GET - PUT - CREATE - DELETE
 class Detailed_Opros_api(mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin,
                          mixins.CreateModelMixin,
@@ -189,14 +186,37 @@ class Detailed_Opros_api(mixins.RetrieveModelMixin,
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+    
 
-# все опросы с ответом текстом
+# все опросы с ответом текстом (лист опросов)
 class Question_tekst_api(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Question_tekst.objects.all()
     serializer_class = Question_tekst_Serializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
+
+class Question_tekst_detailed(mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin,
+                         mixins.CreateModelMixin,
+                         mixins.DestroyModelMixin,
+                         generics.GenericAPIView,):
+    queryset = Question_tekst.objects.all()
+    serializer_class = Question_tekst_Serializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
 
 
 

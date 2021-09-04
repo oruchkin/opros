@@ -24,6 +24,8 @@ urlpatterns = [
     
     # vopros s tekstom    
     path("question_tekst/", views.Question_tekst_api.as_view(), name="question_tekst"),
+    path("detailed_vopros/<int:pk>/", views.Question_tekst_detailed.as_view(), name="detailed_vopros"),
+    
     
     
 ]
