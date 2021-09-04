@@ -5,11 +5,11 @@
 {% block body %}
     Здесь форма нового вопроса с текстом для опроса для админа:
 
-    {% comment %} <form action="{% url 'new_opros' %}" method="POST" class="mt-4">
+    <form action="{% url 'new_vopros_text' opros_id %}" method="POST" class="mt-4">
     {% csrf_token %}
-    {{ blank_form_new_opros.as_p }}
+    {{ blank_form_new_vopros.as_p }}
     <input type="submit" value="submit" class="btn btn-primary">
-    </form> {% endcomment %}
+    </form>
 
 
 

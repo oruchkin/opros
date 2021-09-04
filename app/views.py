@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
-from . forms import Opros_ModelForm
-from . models import Opros
+from . forms import Opros_ModelForm, New_vopros_text_ModelForm
+from . models import Opros, Question_tekst
 # Create your views here.
 
 
@@ -27,8 +27,25 @@ def opros_detailed(request, opros_id):
     })
 
 
+# создание нового текстового вопроса
 def new_vopros_text(request, opros_id):
-    return render(request, "app/new_vopros_text.html")
+    if request.method == "POST":
+        form_new_vopros = New_vopros_text_ModelForm(request.POST)
+        if form_new_vopros.is_valid():
+            user = request.user
+            question_text = form_new_vopros.cleaned_data['question_text']
+            kakoy_opros = Opros.objects.get(pk=opros_id)
+            new_vopros = Question_tekst(opros_id=kakoy_opros, question_text=question_text)
+            new_vopros.save()
+        return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
+
+    else:
+        blank_form_new_vopros = New_vopros_text_ModelForm()
+        return render(request, "app/new_vopros_text.html", {
+            "blank_form_new_vopros": blank_form_new_vopros,
+            "opros_id": opros_id,
+        })
+
 
 
 def list_admin(request):
