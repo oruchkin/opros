@@ -8,23 +8,20 @@
 
     {% for opros in all_opros %}
     
-
-    
         <div class="col-sm-6">
-            <div class="card">
+            <div class="card mt-4">
                 <div class="card-body">
-                    <h5 class="card-title">Номер опроса: {{opros.id}}</h5>
-                    <p class="card-text">{{opros}}</p>
+                    <h5 class="card-title">Название опроса: <b>{{opros}}</b></h5>
+                    <p class="card-text">id опроса: {{opros.id}}</p>
                     <a href="{% url 'opros_detailed' opros.id %}" class="btn btn-primary">Вопросы внутри</a>
-                    {% if opros.date_of_start == None %}                        
+                    {% if opros.date_of_start == None1 %}                        
                         <a href="#" class="btn btn-info">Изменить детали опроса </a>
                     {% else %}
-                        <a href="#" class="btn btn-danger">Изменить опрос нельзя</a>
+                        <a href="#" class="btn btn-warning">Изменить детали вопроса с датой</a>
                     {% endif %}
                 </div>
             </div>
         </div>
-
 
     {% endfor %}
 

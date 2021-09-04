@@ -14,6 +14,7 @@ class Opros(models.Model):
     date_of_start = models.DateField(blank=True, null=True)
     date_of_end = models.DateField(blank=True, null=True)
     blocked = models.BooleanField(default=False) #можно удалить не используется
+    # blocked not using can be deleted
 
     def __str__(self):
         return f'{self.title}'
@@ -26,6 +27,9 @@ class Question_tekst(models.Model):
 
     def __str__(self):
         return f'текущий вопрос {self.question_text}'
+    
+    #можно добавить сбда варианты как answer_1, answer_2... как необязательные
+    # и поле множестенный ответ или нет
 
 
 class Question_1variant(models.Model):

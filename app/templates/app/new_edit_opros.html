@@ -1,10 +1,25 @@
 {% extends "app/layout.html" %}
 
-{% block title %}Новый вопрос с текстом для опроса{% endblock %}
+{% block title %}Новый опрос{% endblock %}
 
 {% block body %}
-        
-    {% comment %} сообщения для изменения вопроса {% endcomment %}
+
+    {% comment %} Если задача СОЗАТЬ опрос {% endcomment %}
+    {% if create_opros %}
+
+        {% if message %} <div class="mt-4">{{message}}</div> {% endif %}
+
+        <form action="{% url 'new_opros' %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ blank_form_new_opros.as_p }}
+        <input type="submit" value="Создать новый опрос" class="btn btn-primary">
+        </form>
+    {% endif %}
+
+
+
+
+
     {% if current_vopros %}
         <br>
         <div class="questions_tekst">
@@ -14,7 +29,7 @@
         <br>
     {% endif %}
 
-    {{ message }}
+    
     {% comment %} форма для создания вопроса {% endcomment %}
     {% if new %}    
         <form action="{% url 'new_vopros_text' opros_id %}" method="POST" class="mt-4">
@@ -24,14 +39,5 @@
         </form>
     {% endif %}
 
-    {% comment %} форма для изменения вопроса {% endcomment %}
-    {% if edit %}
-        <br><br>id вопроса: <b>{{vopros_id}} </b>передается <br>
-        <form action="{% url 'edit_vopros_text' vopros_id %}" method="POST" class="mt-4">
-        {% csrf_token %}
-        {{ blank_form_edit_vopros.as_p }}
-        <input type="submit" value="Изменить вопрос" class="btn btn-primary">
-        </form>
-    {% endif %}
 
 {% endblock %}

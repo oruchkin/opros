@@ -109,9 +109,15 @@ def new_opros(request):
 
     else:
         blank_form_new_opros = Opros_ModelForm()
-        return render(request, "app/new_opros.html", {
+        return render(request, "app/new_edit_opros.html", {
             "blank_form_new_opros": blank_form_new_opros,
+            "message": "Форма для СОЗДАНИЯ нового опроса: ",
+            "create_opros" : True,
         })
+
+
+def edit_opros(request):
+    pass
 
 
 # IP каждго юзера. This is "id" of any unauthorized user.

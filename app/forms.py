@@ -1,7 +1,7 @@
 from django import forms
 from . models import Opros, Question_tekst
 
-# форма создания нового опроса
+# форма создания и изменения  опроса
 class Opros_ModelForm(forms.ModelForm):
     class Meta:
         model = Opros
@@ -19,7 +19,7 @@ class Opros_ModelForm(forms.ModelForm):
             "date_of_end": "дата окончания (не требуется)",
         }
 
-# форма создания нового вороса с текстовым ответом
+# форма создания и изменения вороса с текстовым ответом
 class New_vopros_text_ModelForm(forms.ModelForm):
     class Meta:
         model = Question_tekst

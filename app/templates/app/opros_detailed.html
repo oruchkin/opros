@@ -13,10 +13,17 @@
     <div class="questions_tekst">
         <p>Вывод всех вопросов с текстовым ответом (ответ вводит пользователь) к текущему опросу:</p>
         <hr>
-        <div class="questions_tekst mt-4">
-            <p>создать новый вопрос с текстовым ответом:</p>            
-            <a href="{% url 'new_vopros_text' current_opros.id %}" class="btn btn-success">Создать</a>
-        </div>
+
+
+
+        {% if current_opros.date_of_start == None %}
+            <div class="questions_tekst mt-4">
+                <p>создать новый вопрос с текстовым ответом:</p>            
+                <a href="{% url 'new_vopros_text' current_opros.id %}" class="btn btn-success">Создать</a>
+            </div>
+        {% else %}
+            <p class="mt-4">Здесь нельзя создать вопрос </p>
+        {% endif %}    
 
 
         {% for vopros in questions_tekst  %}
@@ -24,11 +31,11 @@
                 <b>id: {{vopros.id}}</b>
                 Текст вопроса: <b>{{vopros.question_text}}</b>
                 
-                {% if current_opros.blocked == False %}
+
+                {% if current_opros.date_of_start == None %}
                     <div class="mt-4">
                         <a href="{% url 'edit_vopros_text' vopros.id %}" class="btn btn-primary">Edit</a>
-                        <a href="{% url 'delete_vopros_text' vopros.id %}" class="btn btn-danger">Delete</a>
-                  
+                        <a href="{% url 'delete_vopros_text' vopros.id %}" class="btn btn-danger">Delete</a>    
                     </div>
                 {% else %}
                     <p class="mt-4">Нельзя изменить или удалить вопрос так как опрос имеет дату старта</p>
