@@ -119,7 +119,7 @@
                     <td>уникальный id вопроса</td>
                     <td>Сам вопрос сюда</td>
                     <td>поле не заполнять, игнорировать (не обязательно, (удалить))</td>
-                    <td>id опроса к которму прилинкован текущий вопрос</td>
+                    <td>id опроса к которму прилинкован текущий вопрос смотреть в пункте 1</td>
                 </tr>
             </tbody>
         </table>
@@ -127,7 +127,74 @@
     </div>
     
     
+    {% comment %} получения спискок всех вопросов с ВАРИАНТАМИ ответов {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >5) Получить спискок всех вопросов с ВАРИАНТАМИ ответов <b>GET запросы.</b>  <a href="http://127.0.0.1:8000/question_variant/">http://127.0.0.1:8000/question_variant/</a> </p> 
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">vopros</th>
+                    <th scope="col">variant_1</th>
+                    <th scope="col">variant_2</th>
+                    <th scope="col">variant_3</th>
+                    <th scope="col">variant_4</th>
+                    <th scope="col">mnogo</th>
+                    <th scope="col">opros_id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id вопроса</td>
+                    <td>Сам вопрос сюда</td>
+                    <td>Первый вариант ответа (может быть Null)</td>
+                    <td>Второй вариант ответа (может быть Null)</td>
+                    <td>Третий вариант ответа (может быть Null)</td>
+                    <td>Четвертый вариант ответа (может быть Null)</td>
+                    <td>Возможность выбора несколько вариантов или только один. "True" or "False" только два значения, по умолчанию ставиться "False", если "True" значит значений выбора несколько, если "False" то только один </td>
+                    <td>id опроса к которму прилинкован текущий вопрос смотреть в пункте 1</td>
+                </tr>
+            </tbody>
+        </table>
 
+    </div>
+
+
+    {% comment %} получения подробного вопроса с ВАРИАНТАМИ ответов {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >6) Получения подробного вопроса с ВАРИАНТАМИ ответов <b>GET запросы.</b>  <a href="http://127.0.0.1:8000/question_variant_detailed/1/">http://127.0.0.1:8000/question_variant_detailed/id(pk)//</a> </p> 
+        <p> вместо id(pk) указать id конкретного опроса (например "1", "33","69)</p>
+        <p> Методы обращений: <b> GET, POST, CREATE, DELETE </b></p> 
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">vopros</th>
+                    <th scope="col">variant_1</th>
+                    <th scope="col">variant_2</th>
+                    <th scope="col">variant_3</th>
+                    <th scope="col">variant_4</th>
+                    <th scope="col">mnogo</th>
+                    <th scope="col">opros_id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id вопроса</td>
+                    <td>Сам вопрос сюда</td>
+                    <td>Первый вариант ответа (может быть Null)</td>
+                    <td>Второй вариант ответа (может быть Null)</td>
+                    <td>Третий вариант ответа (может быть Null)</td>
+                    <td>Четвертый вариант ответа (может быть Null)</td>
+                    <td>Возможность выбора несколько вариантов или только один. "True" or "False" только два значения, по умолчанию ставиться "False", если "True" значит значений выбора несколько, если "False" то только один </td>
+                    <td>id опроса к которму прилинкован текущий вопрос смотреть в пункте 1</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
 
 
 

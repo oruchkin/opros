@@ -188,7 +188,7 @@ class Detailed_Opros_api(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
     
 
-# все опросы с ответом текстом (лист опросов)
+# все вопросы с ответом текстом (лист вопросов)
 class Question_tekst_api(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Question_tekst.objects.all()
     serializer_class = Question_tekst_Serializer
@@ -197,6 +197,7 @@ class Question_tekst_api(mixins.ListModelMixin, generics.GenericAPIView):
         return self.list(request, *args, **kwargs)
 
 
+# Детальные вопросы с текстом (по штучно) - GET - PUT - CREATE - DELETE
 class Question_tekst_detailed(mixins.RetrieveModelMixin,
                          mixins.UpdateModelMixin,
                          mixins.CreateModelMixin,
@@ -217,10 +218,31 @@ class Question_tekst_detailed(mixins.RetrieveModelMixin,
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
 
-
+# все опросы с ВАРИАНТАМИ ответов (лист опросов)
 class Question_variant_list(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Question_variant.objects.all()
     serializer_class = Question_variant_Serializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+
+# Детальные вопрос с ВАРИАНТАМИ (по штучно) - GET - PUT - CREATE - DELETE
+class Question_variant_list_detailed(mixins.RetrieveModelMixin,
+                              mixins.UpdateModelMixin,
+                              mixins.CreateModelMixin,
+                              mixins.DestroyModelMixin,
+                              generics.GenericAPIView,):
+    queryset = Question_variant.objects.all()
+    serializer_class = Question_variant_Serializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
