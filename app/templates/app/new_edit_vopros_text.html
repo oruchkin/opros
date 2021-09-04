@@ -4,9 +4,6 @@
 
 {% block body %}
         
-    
-    
-
     {% if current_vopros %}
         <br>
         <div class="questions_tekst">
@@ -17,7 +14,7 @@
     {% endif %}
 
     {{ message }}
-    {% comment %} для создания вопроса {% endcomment %}
+    {% comment %} форма для создания вопроса {% endcomment %}
     {% if new %}    
         <form action="{% url 'new_vopros_text' opros_id %}" method="POST" class="mt-4">
         {% csrf_token %}
@@ -26,7 +23,7 @@
         </form>
     {% endif %}
 
-    {% comment %} для изменения вопроса {% endcomment %}
+    {% comment %} форма для изменения вопроса {% endcomment %}
     {% if edit %}
         <br><br>id вопроса: <b>{{vopros_id}} </b>передается <br>
         <form action="{% url 'edit_vopros_text' vopros_id %}" method="POST" class="mt-4">
@@ -35,7 +32,5 @@
         <input type="submit" value="Изменить вопрос" class="btn btn-primary">
         </form>
     {% endif %}
-
-
 
 {% endblock %}

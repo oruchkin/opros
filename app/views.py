@@ -29,7 +29,7 @@ def opros_detailed(request, opros_id):
 
 # создание нового текстового вопроса
 def new_vopros_text(request, opros_id):
-    if request.method == "PUT":
+    if request.method == "POST":
         form_new_vopros = New_vopros_text_ModelForm(request.POST)
         if form_new_vopros.is_valid():
             user = request.user
@@ -77,6 +77,16 @@ def edit_vopros_text(request, vopros_id):
             "edit": True,
         })
 
+# удаление вопроса из опроса
+def delete_vopros_text(request, vopros_id):
+    current_vopros = Question_tekst.objects.filter(pk=vopros_id).first()
+    opros_id = current_vopros.opros_id.id
+    
+    vopros_to_delete = Question_tekst.objects.get(pk=vopros_id)
+    vopros_to_delete.delete()
+    return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
+
+        
 
 def list_admin(request):
     all_opros = Opros.objects.all()

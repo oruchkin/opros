@@ -8,7 +8,7 @@
 
     Детальный обзор опроса:     
     <b>id = {{current_opros.id}}</b><br>
-    название опроса = <b>{{current_opros.title}}<br><br> </b>
+    название текущего опроса = <b>{{current_opros.title}}<br><br> </b>
     
     <div class="questions_tekst">
         <p>Вывод всех вопросов с текстовым ответом (ответ вводит пользователь) к текущему опросу:</p>
@@ -27,7 +27,7 @@
                 {% if current_opros.blocked == False %}
                     <div class="mt-4">
                         <a href="{% url 'edit_vopros_text' vopros.id %}" class="btn btn-primary">Edit</a>
-                        <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'delete_vopros_text' vopros.id %}" class="btn btn-danger">Delete</a>
                   
                     </div>
                 {% else %}
