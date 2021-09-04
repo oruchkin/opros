@@ -4,7 +4,13 @@ from django.urls import reverse
 
 from . forms import Opros_ModelForm, New_vopros_text_ModelForm
 from . models import Opros, Question_tekst
-# Create your views here.
+
+#API: 
+from rest_framework import mixins
+from rest_framework import generics
+
+from app.serializer import OprosSerializer, Question_tekst_Serializer
+
 
 
 def index(request):
@@ -116,8 +122,27 @@ def new_opros(request):
         })
 
 
-def edit_opros(request):
-    pass
+def edit_opros(request, opros_id):
+    if request.method == "POST":
+        form_new_opros = Opros_ModelForm(request.POST)
+        if form_new_opros.is_valid():
+            user = request.user
+            title = form_new_opros.cleaned_data['title']
+            date_of_start = form_new_opros.cleaned_data['date_of_start']
+            date_of_end = form_new_opros.cleaned_data['date_of_end']
+            new_opros = Opros(title=title, creator=user,
+                              date_of_start=date_of_start, date_of_end=date_of_end)
+            new_opros.save()
+        return HttpResponseRedirect(reverse("index"))
+
+    else:
+        blank_form_edit_opros = Opros_ModelForm()
+        return render(request, "app/new_edit_opros.html", {
+            "blank_form_edit_opros": blank_form_edit_opros,
+            "message": "Форма для ИЗМЕНЕНИЯ старого опроса: ",
+            "edit_opros": True,
+            "opros_id": opros_id,
+        })
 
 
 # IP каждго юзера. This is "id" of any unauthorized user.
@@ -128,3 +153,24 @@ def get_client_ip(request):
     else:
         ip = request.META.get('REMOTE_ADDR')
     return ip
+
+
+
+# API
+class List_Opros(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Opros.objects.all()
+    serializer_class = OprosSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class Question_tekst(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Question_tekst.objects.all()
+    serializer_class = Question_tekst_Serializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+

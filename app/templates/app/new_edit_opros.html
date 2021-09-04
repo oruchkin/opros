@@ -6,7 +6,6 @@
 
     {% comment %} Если задача СОЗАТЬ опрос {% endcomment %}
     {% if create_opros %}
-
         {% if message %} <div class="mt-4">{{message}}</div> {% endif %}
 
         <form action="{% url 'new_opros' %}" method="POST" class="mt-4">
@@ -14,6 +13,19 @@
         {{ blank_form_new_opros.as_p }}
         <input type="submit" value="Создать новый опрос" class="btn btn-primary">
         </form>
+    {% endif %}
+
+
+    {% comment %} Если задача ИЗМЕНИТЬ опрос {% endcomment %}
+    {% if edit_opros  %}
+        {% if message %} <div class="mt-4">{{message}}</div> {% endif %}
+
+        <form action="{% url 'edit_opros' %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ blank_form_edit_opros.as_p }}
+        <input type="submit" value="Изменить существующий опрос" class="btn btn-primary">
+        </form>
+    
     {% endif %}
 
 

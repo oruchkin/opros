@@ -3,5 +3,70 @@
 {% block title %}index page{% endblock %}
 
 {% block body %}
-    users ip: {{user_ip}}
+    {% comment %} users ip: {{user_ip}} {% endcomment %}
+
+
+    
+    <p>Документация по API:</p>
+    {% comment %} получения списка всех опросов {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >1) Получить список всех опросов только GET запросы.  <a href="http://127.0.0.1:8000/list_opros/">http://127.0.0.1:8000/list_opros/</a> </p> 
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">title</th>
+                    <th scope="col">opisanie</th>
+                    <th scope="col">date_of_start</th>
+                    <th scope="col">date_of_end</th>
+                    <th scope="col">blocked</th>
+                    <th scope="col">creator</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id</td>
+                    <td>Заголовок</td>
+                    <td>Описание опроса</td>
+                    <td>Дата начала опроса</td>
+                    <td>Дата окончания опроса</td>
+                    <td>заблокировано или нет</td>
+                    <td>создатель опроса</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    {% comment %} получения списка всех вопросов с текстовым ответом {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >2) Получить список всех вопросов с текстовым ответом GET запросы.  <a href="http://127.0.0.1:8000/question_tekst/">http://127.0.0.1:8000/question_tekst/</a> </p> 
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">question_text</th>
+                    <th scope="col">question_answer</th>
+                    <th scope="col">opros_id</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id вопроса</td>
+                    <td>Сам вопрос сюда</td>
+                    <td>поле не заполнять, игнорировать (не обязательно, (удалить))</td>
+                    <td>id опроса к которму прилинкован текущий вопрос</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    
+
+
+
+
 {% endblock %}
