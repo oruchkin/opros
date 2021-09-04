@@ -16,9 +16,9 @@
                     <a href="{% url 'opros_detailed' opros.id %}" class="btn btn-primary">Вопросы внутри</a>
                     {% comment %} кнопка изменить {% endcomment %}
                     {% if opros.date_of_start == None1 %}                        
-                        <a href="{% url 'edit_opros' opros.pk %}" class="btn btn-info">Изменить детали опроса </a>
+                        <a href="#" class="btn btn-info">Изменить детали опроса </a>
                     {% else %}
-                        <a href="{% url 'edit_opros' opros.id %}" class="btn btn-warning">Изменить детали вопроса с датой</a>
+                        <a href="#" class="btn btn-warning">Изменить детали вопроса с датой</a>
                     {% endif %}
                 </div>
             </div>

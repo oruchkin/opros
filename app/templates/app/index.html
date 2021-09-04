@@ -10,7 +10,7 @@
     <p>Документация по API:</p>
     {% comment %} получения списка всех опросов {% endcomment %}
     <div class="questions_tekst mt-4">
-        <p >1) Получить список всех опросов только GET запросы.  <a href="http://127.0.0.1:8000/list_opros/">http://127.0.0.1:8000/list_opros/</a> </p> 
+        <p >1) Получить список всех опросов только <b>GET запросы.</b>  <a href="http://127.0.0.1:8000/list_opros/">http://127.0.0.1:8000/list_opros/</a> </p> 
         <p>Поля:</p>
         <table class="table table-bordered mt-4">
             <thead>
@@ -41,7 +41,9 @@
 
     {% comment %} получения списка всех вопросов с текстовым ответом {% endcomment %}
     <div class="questions_tekst mt-4">
-        <p >2) Получить список всех вопросов с текстовым ответом GET запросы.  <a href="http://127.0.0.1:8000/question_tekst/">http://127.0.0.1:8000/question_tekst/</a> </p> 
+        <p >2) Получить Конкретный опрос в деталях  <a href="http://127.0.0.1:8000/detailed_opros/1/">http://127.0.0.1:8000/detailed_opros/id(pk)/</a> </p> 
+        <p>вместо id(pk) указать id конкретного опроса (например "1", "33","69)</p>
+        <p> Методы обращений: <b> GET, POST, CREATE, DELETE </b></p> 
         <p>Поля:</p>
         <table class="table table-bordered mt-4">
             <thead>
@@ -64,6 +66,35 @@
         </table>
 
     </div>
+
+    {% comment %} получения списка всех вопросов с текстовым ответом {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >3) Получить список всех вопросов с текстовым ответом <b>GET запросы.</b>  <a href="http://127.0.0.1:8000/question_tekst/">http://127.0.0.1:8000/question_tekst/</a> </p> 
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">question_text</th>
+                    <th scope="col">question_answer</th>
+                    <th scope="col">opros_id</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id вопроса</td>
+                    <td>Сам вопрос сюда</td>
+                    <td>поле не заполнять, игнорировать (не обязательно, (удалить))</td>
+                    <td>id опроса к которму прилинкован текущий вопрос</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    
     
 
 

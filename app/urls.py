@@ -18,9 +18,12 @@ urlpatterns = [
     path("edit_vopros_text/<int:vopros_id>", views.edit_vopros_text, name="edit_vopros_text"),
     path("delete_vopros_text/<int:vopros_id>", views.delete_vopros_text, name="delete_vopros_text"),
     
-    # API
-    path("list_opros/", views.List_Opros.as_view(), name="list_opros"),
-    path("question_tekst/", views.Question_tekst.as_view(), name="question_tekst"),
+    # API #opros
+    path("list_opros/", views.List_Opros_api.as_view(), name="list_opros"),
+    path("detailed_opros/<int:pk>/", views.Detailed_Opros_api.as_view(), name="detailed_opros"),
+    
+    # vopros s tekstom    
+    path("question_tekst/", views.Question_tekst_api.as_view(), name="question_tekst"),
     
     
 ]

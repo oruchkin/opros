@@ -157,15 +157,41 @@ def get_client_ip(request):
 
 
 # API
-class List_Opros(mixins.ListModelMixin, generics.GenericAPIView):
+# Лист опросов - все опросы
+class List_Opros_api(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Opros.objects.all()
     serializer_class = OprosSerializer
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
+    
+    
+# Детали опросов опросов - GET - PUT - CREATE - DELETE
+# class Detailed_Opros_api(mixins.ListModelMixin, generics.GenericAPIView):
 
 
-class Question_tekst(mixins.ListModelMixin, generics.GenericAPIView):
+class Detailed_Opros_api(mixins.RetrieveModelMixin,
+                         mixins.UpdateModelMixin,
+                         mixins.CreateModelMixin,
+                         mixins.DestroyModelMixin,
+                         generics.GenericAPIView,):
+    queryset = Opros.objects.all()
+    serializer_class = OprosSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+# все опросы с ответом текстом
+class Question_tekst_api(mixins.ListModelMixin, generics.GenericAPIView):
     queryset = Question_tekst.objects.all()
     serializer_class = Question_tekst_Serializer
 
