@@ -9,15 +9,30 @@
     название опроса = {{current_opros.title}}<br><br>
     
     <div class="questions_tekst">
-        <p>Вывод всех вопросов с текстом к текущему опросу:</p>
+        <p>Вывод всех вопросов с текстовым ответом(ответ вводит пользователь) к текущему опросу:</p>
+        <hr>
+        <div class="questions_tekst mt-4">
+            <p>создать новый вопрос с текстовым ответом:</p>            
+            <a href="{% url 'new_vopros_text' current_opros.id %}" class="btn btn-success">Создать</a>
+        </div>
+
+
         {% for vopros in questions_tekst  %}
-        {{vopros}}<br>
-        <br>
+            <div class="questions_tekst mt-4">
+                <b>id: {{vopros.id}}</b>
+                {{vopros}} 
+                <div class="mt-4">
+                    <button type="button" class="btn btn-primary">Edit</button>
+                    <button type="button" class="btn btn-danger">Delete</button>                    
+                </div>
+            </div>
+            
+  
         {% endfor %}
     </div>
     
-
-
+  
+    
     
 
 {% endblock %}

@@ -27,6 +27,9 @@ def opros_detailed(request, opros_id):
     })
 
 
+def new_vopros_text(request, opros_id):
+    return render(request, "app/new_vopros_text.html")
+
 
 def list_admin(request):
     all_opros = Opros.objects.all()
