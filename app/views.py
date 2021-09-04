@@ -4,13 +4,12 @@ from django.urls import reverse
 
 from . forms import Opros_ModelForm, New_vopros_text_ModelForm
 
-from . models import Opros, Question_tekst, Question_variant
+from . models import Answer, Opros, Question_tekst, Question_variant
 #API: 
 from rest_framework import mixins
 from rest_framework import generics
 
-from app.serializer import OprosSerializer, Question_tekst_Serializer, Question_variant_Serializer
-
+from app.serializer import OprosSerializer, Question_tekst_Serializer, Question_variant_Serializer, Answer_Serializer
 
 
 def index(request):
@@ -24,9 +23,7 @@ def index(request):
 def opros_detailed(request, opros_id):
     current_opros = Opros.objects.get(pk=opros_id)
     # все вопросы с текстом к опросу
-    questions_tekst = current_opros.question_for_opros.all()
-    #print(questions_tekst)
-    
+    questions_tekst = current_opros.question_for_opros.all()   
     return render(request, "app/opros_detailed.html",{
         "current_opros": current_opros,
         "questions_tekst": questions_tekst,
@@ -44,7 +41,6 @@ def new_vopros_text(request, opros_id):
             new_vopros = Question_tekst(opros_id=kakoy_opros, question_text=question_text)
             new_vopros.save()
         return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
-
     else:
         blank_form_new_vopros = New_vopros_text_ModelForm()
         return render(request, "app/new_edit_vopros_text.html", {
@@ -54,6 +50,7 @@ def new_vopros_text(request, opros_id):
             "new": True,
         })
 
+
 # изменение существующего текстового вопроса
 def edit_vopros_text(request, vopros_id):
     if request.method == "POST":
@@ -62,9 +59,7 @@ def edit_vopros_text(request, vopros_id):
             question_text = form_edit_vopros.cleaned_data['question_text']
             kakoy_vopros = Question_tekst.objects.get(pk=vopros_id)            
             kakoy_vopros.question_text = question_text
-            kakoy_vopros.save()
-            
-            
+            kakoy_vopros.save()            
             current_vopros = Question_tekst.objects.filter(pk=vopros_id).first()
             opros_id = current_vopros.opros_id.id            
             return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
@@ -92,7 +87,6 @@ def delete_vopros_text(request, vopros_id):
     vopros_to_delete.delete()
     return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
 
-        
 
 def list_admin(request):
     all_opros = Opros.objects.all()
@@ -146,6 +140,8 @@ def edit_opros(request, opros_id):
 
 
 # IP каждго юзера. This is "id" of any unauthorized user.
+# планировалось мною для создания уникального id юзера который не зарегистрирован
+# на каждый ip по плану был свой id
 def get_client_ip(request):
     x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
     if x_forwarded_for:
@@ -234,6 +230,37 @@ class Question_variant_list_detailed(mixins.RetrieveModelMixin,
                               generics.GenericAPIView,):
     queryset = Question_variant.objects.all()
     serializer_class = Question_variant_Serializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+# все ответы всех пользователей (лист ответов)
+class Answer_list(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Answer.objects.all()
+    serializer_class = Answer_Serializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+
+# Конкретный ответ пользователя 
+class Answer_detailed(mixins.RetrieveModelMixin,
+                                     mixins.UpdateModelMixin,
+                                     mixins.CreateModelMixin,
+                                     mixins.DestroyModelMixin,
+                                     generics.GenericAPIView,):
+    queryset = Answer.objects.all()
+    serializer_class = Answer_Serializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

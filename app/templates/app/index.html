@@ -3,9 +3,6 @@
 {% block title %}index page{% endblock %}
 
 {% block body %}
-    {% comment %} users ip: {{user_ip}} {% endcomment %}
-
-
     
     <p>Документация по API:</p>
     {% comment %} получения списка всех опросов {% endcomment %}
@@ -195,6 +192,64 @@
         </table>
 
     </div>
+
+
+    {% comment %} получения спискок всех вопросов с ВАРИАНТАМИ ответов {% endcomment %}
+    <div class="questions_tekst mt-4">
+        <p >7) Получение все ОТВЕТОВ ПОЛЬЗОВАТЕЛЕЙ <b>GET запросы.</b>  <a href="http://127.0.0.1:8000/answer_list/">http://127.0.0.1:8000/answer_list/</a> </p> 
+        <hr>
+        <p >8) Получить Конкретный ОТВЕТ чтобы запостить новый ответ нужно постить на любой id(например 1) <a href="http://127.0.0.1:8000/answer_detailed/3/">http://127.0.0.1:8000/answer_detailed/id(pk)/</a> </p> 
+        <p>вместо id(pk) указать id конкретного опроса (например "1", "33","69)</p>
+        <p> Методы обращений: <b> GET, POST, CREATE, DELETE </b></p> 
+        <hr>
+        <p>Поля:</p>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">user_id</th>
+                    <th scope="col">answer_for_tekst_id</th>
+                    <th scope="col">answer_variant_1</th>
+                    <th scope="col">answer_variant_2</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>уникальный id ответа </td>
+                    <td>уникальный id юзера (может быть Null</td>
+                    <td>id вопроса с множественными ответами (может быть Null</td>
+                    <td>Первый вариант ответа (может быть Null)</td>
+                    <td>Второй вариант ответа (может быть Null)</td>
+ 
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-bordered mt-4">
+            <thead>
+                <tr>
+                    <th scope="col">answer_variant_3</th>
+                    <th scope="col">answer_variant_4</th>
+                    <th scope="col">opros_id</th>
+                    <th scope="col">question_tekst_id</th>
+                    <th scope="col">question_variant_id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Третий вариант ответа (может быть Null)</td>
+                    <td>Четвертый вариант ответа (может быть Null)</td>
+                    <td>id опроса к которму прилинкован текущий вопрос смотреть в пункте 1 (может быть Null)</td>
+                    <td>id вопроса с вводом текста (может быть Null)</td>
+                    <td>ответ на вопрос с вводом текста (может быть Null)</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    
 
 
 

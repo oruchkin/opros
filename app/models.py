@@ -38,4 +38,19 @@ class Question_variant(models.Model):
     mnogo = models.BooleanField(default=False)
 
     def __str__(self):
-        return f'текущий вопрос {self.question_text}'
+        return f'текущий вопрос {self.vopros}'
+
+
+class Answer(models.Model):
+    user_id = models.IntegerField()
+    opros_id = models.ForeignKey(Opros, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="opros_id")
+    question_tekst_id = models.ForeignKey(Question_tekst, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="question_tekst_id")
+    answer_for_tekst_id = models.CharField(max_length=1000, blank=True, null=True)
+    question_variant_id = models.ForeignKey(Question_variant, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="question_variant_id")
+    answer_variant_1 = models.CharField(max_length=1000, blank=True, null=True)
+    answer_variant_2 = models.CharField(max_length=1000, blank=True, null=True)
+    answer_variant_3 = models.CharField(max_length=1000, blank=True, null=True)
+    answer_variant_4 = models.CharField(max_length=1000, blank=True, null=True)
+
+    def __str__(self):
+        return f'ответ юзера: {self.user_id}'

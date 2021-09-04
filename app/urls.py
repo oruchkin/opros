@@ -29,7 +29,9 @@ urlpatterns = [
     path("question_variant/", views.Question_variant_list.as_view(), name="question_variant"),
     path("question_variant_detailed/<int:pk>/", views.Question_variant_list_detailed.as_view(), name="question_variant_detailed"),
         
-    
+    # ответы пользователей    
+    path("answer_list/", views.Answer_list.as_view(), name="answer_list"),
+    path("answer_detailed/<int:pk>/", views.Answer_detailed.as_view(), name="answer_detailed"),
     
 ]
 
