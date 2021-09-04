@@ -1,0 +1,41 @@
+{% extends "app/layout.html" %}
+
+{% block title %}Новый вопрос с текстом для опроса{% endblock %}
+
+{% block body %}
+        
+    
+    
+
+    {% if current_vopros %}
+        <br>
+        <div class="questions_tekst">
+        Так выглядит вопрос до изменения:<br>
+        <b>{{current_vopros.question_text}}</b>
+        </div>
+        <br>
+    {% endif %}
+
+    {{ message }}
+    {% comment %} для создания вопроса {% endcomment %}
+    {% if new %}    
+        <form action="{% url 'new_vopros_text' opros_id %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ blank_form_new_vopros.as_p }}
+        <input type="submit" value="Создать новый вопрос" class="btn btn-primary">
+        </form>
+    {% endif %}
+
+    {% comment %} для изменения вопроса {% endcomment %}
+    {% if edit %}
+        <br><br>id вопроса: <b>{{vopros_id}} </b>передается <br>
+        <form action="{% url 'edit_vopros_text' vopros_id %}" method="POST" class="mt-4">
+        {% csrf_token %}
+        {{ blank_form_edit_vopros.as_p }}
+        <input type="submit" value="Изменить вопрос" class="btn btn-primary">
+        </form>
+    {% endif %}
+
+
+
+{% endblock %}

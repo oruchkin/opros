@@ -29,7 +29,7 @@ def opros_detailed(request, opros_id):
 
 # создание нового текстового вопроса
 def new_vopros_text(request, opros_id):
-    if request.method == "POST":
+    if request.method == "PUT":
         form_new_vopros = New_vopros_text_ModelForm(request.POST)
         if form_new_vopros.is_valid():
             user = request.user
@@ -41,11 +41,41 @@ def new_vopros_text(request, opros_id):
 
     else:
         blank_form_new_vopros = New_vopros_text_ModelForm()
-        return render(request, "app/new_vopros_text.html", {
+        return render(request, "app/new_edit_vopros_text.html", {
             "blank_form_new_vopros": blank_form_new_vopros,
             "opros_id": opros_id,
+            "message": "Здесь форма нового вопроса с текстом для опроса для админа: ",
+            "new": True,
         })
 
+# изменение существующего текстового вопроса
+def edit_vopros_text(request, vopros_id):
+    if request.method == "POST":
+        form_edit_vopros = New_vopros_text_ModelForm(request.POST)
+        if form_edit_vopros.is_valid():
+            question_text = form_edit_vopros.cleaned_data['question_text']
+            kakoy_vopros = Question_tekst.objects.get(pk=vopros_id)            
+            kakoy_vopros.question_text = question_text
+            kakoy_vopros.save()
+            
+            
+            current_vopros = Question_tekst.objects.filter(pk=vopros_id).first()
+            opros_id = current_vopros.opros_id.id            
+            return HttpResponseRedirect(reverse("opros_detailed", args=[opros_id]))
+            
+
+    else:
+        blank_form_edit_vopros = New_vopros_text_ModelForm()
+        current_vopros = Question_tekst.objects.filter(pk=vopros_id).first()
+        #opros_id = current_vopros.opros_id.id
+        #print(opros_id)
+        return render(request, "app/new_edit_vopros_text.html", {
+            "current_vopros": current_vopros,
+            "blank_form_edit_vopros": blank_form_edit_vopros,
+            "vopros_id": vopros_id,
+            "message": "Здесь форма изменение конкретного вопроса: ",
+            "edit": True,
+        })
 
 
 def list_admin(request):
