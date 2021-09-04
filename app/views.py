@@ -100,8 +100,10 @@ def new_opros(request):
         form_new_opros = Opros_ModelForm(request.POST)
         if form_new_opros.is_valid():
             user = request.user
-            title = form_new_opros.cleaned_data['title']
-            new_opros = Opros(title=title, creator=user)
+            title = form_new_opros.cleaned_data['title']            
+            date_of_start = form_new_opros.cleaned_data['date_of_start']
+            date_of_end = form_new_opros.cleaned_data['date_of_end']
+            new_opros = Opros(title=title, creator=user, date_of_start=date_of_start, date_of_end=date_of_end)
             new_opros.save()
         return HttpResponseRedirect(reverse("index"))
 

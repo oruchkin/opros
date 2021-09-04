@@ -11,8 +11,8 @@ class Opros(models.Model):
     creator = models.ForeignKey(User, related_name='user_id_like', on_delete=models.CASCADE)
     title = models.CharField(max_length=500)
     opisanie = models.CharField(max_length=900)
-    date_of_start = models.DateTimeField(blank=True, null=True)
-    date_of_end = models.DateTimeField(blank=True, null=True)
+    date_of_start = models.DateField(blank=True, null=True)
+    date_of_end = models.DateField(blank=True, null=True)
     blocked = models.BooleanField(default=False) #можно удалить не используется
 
     def __str__(self):

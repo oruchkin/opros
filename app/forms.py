@@ -9,8 +9,8 @@ class Opros_ModelForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={"class": "form-control"}),
             'opisanie': forms.Textarea(attrs={"class": "form-control"}),
-            'date_of_start': forms.DateTimeInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
-            'date_of_end': forms.DateTimeInput( attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+            'date_of_start': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
+            'date_of_end': forms.DateInput(attrs={'class': 'form-control', 'placeholder': 'Select a date', 'type': 'date'}),
         }
         labels = {
             "title": "*Название",
