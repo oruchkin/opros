@@ -13,7 +13,7 @@ class Opros(models.Model):
     opisanie = models.CharField(max_length=900)
     date_of_start = models.DateTimeField(blank=True, null=True)
     date_of_end = models.DateTimeField(blank=True, null=True)
-    blocked = models.BooleanField(default=False)
+    blocked = models.BooleanField(default=False) #можно удалить не используется
 
     def __str__(self):
         return f'{self.title}'
@@ -37,6 +37,8 @@ class Question_1variant(models.Model):
     answer_2 = models.CharField(max_length=1000, blank=True, null=True)
     answer_3 = models.CharField(max_length=1000, blank=True, null=True)
     answer_4 = models.CharField(max_length=1000, blank=True, null=True)
+    #add bool который будет чекать это еденичный вопрос или множественный, если множественный то одна лгика
+    # если еденичный то другая
 
     def __str__(self):
         return f'текущий вопрос {self.question_text}'

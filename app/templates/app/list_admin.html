@@ -15,7 +15,12 @@
                 <div class="card-body">
                     <h5 class="card-title">Номер опроса: {{opros.id}}</h5>
                     <p class="card-text">{{opros}}</p>
-                    <a href="{% url 'opros_detailed' opros.id %}" class="btn btn-primary">Go somewhere</a>
+                    <a href="{% url 'opros_detailed' opros.id %}" class="btn btn-primary">Вопросы внутри</a>
+                    {% if opros.date_of_start == None %}                        
+                        <a href="#" class="btn btn-info">Изменить детали опроса </a>
+                    {% else %}
+                        <a href="#" class="btn btn-danger">Изменить опрос нельзя</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
