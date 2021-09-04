@@ -3,13 +3,13 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 from . forms import Opros_ModelForm, New_vopros_text_ModelForm
-from . models import Opros, Question_tekst
 
+from . models import Opros, Question_tekst, Question_variant
 #API: 
 from rest_framework import mixins
 from rest_framework import generics
 
-from app.serializer import OprosSerializer, Question_tekst_Serializer
+from app.serializer import OprosSerializer, Question_tekst_Serializer, Question_variant_Serializer
 
 
 
@@ -218,5 +218,9 @@ class Question_tekst_detailed(mixins.RetrieveModelMixin,
         return self.destroy(request, *args, **kwargs)
 
 
+class Question_variant_list(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Question_variant.objects.all()
+    serializer_class = Question_variant_Serializer
 
-
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
